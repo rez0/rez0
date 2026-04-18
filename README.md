@@ -22,6 +22,12 @@ dans l'aéronautique (Airbus, Safran) et le secteur public (CNRS).
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Active Directory](https://img.shields.io/badge/Active_Directory-555555?style=flat-square)
 
+## Projets
+
+| Projet | Description |
+|--------|-------------|
+| [CV en ligne](https://github.com/nicolas-kleiber/nicolas-kleiber.github.io) | CV interactif déployé sur GitHub Pages |
+
 ---
 
 📄 [CV en ligne](https://nicolas-kleiber.github.io) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com/in/nicolaskleiber) &nbsp;·&nbsp; ✉️ assistant_nicolas@agentmail.to
