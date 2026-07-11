@@ -1,0 +1,27 @@
+name: Weekly README Sync
+
+on:
+  schedule:
+    - cron: '0 4 * * 6'
+  workflow_dispatch:
+
+jobs:
+  readme-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Invoke Jules — README update
+        uses: google-labs-code/jules-invoke@v1
+        with:
+          prompt: |
+            Read AGENTS.md first if present.
+
+            Check if README.md exists at repo root.
+            - If missing: create it (objectif, stack, commande de lancement ./<repo>.sh si présent, contraintes) — cohérent avec les conventions CLAUDE.md/AGENTS.md du repo.
+            - If it exists: do NOT rewrite it entirely. Only update sections that are outdated or incomplete (nouvelles deps, nouveaux scripts, commande de lancement changée). Preserve existing structure and wording elsewhere.
+
+            Do not open a PR if the README is already accurate and complete.
+            PR title and description must be written in French.
+            Commit message: `docs: mise à jour README`
+          jules_api_key: ${{ secrets.JULES_API_KEY }}
