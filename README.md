@@ -30,4 +30,4 @@ dans l'aéronautique (Airbus, Safran) et le secteur public (CNRS).
 
 ---
 
-📄 [CV en ligne](https://nicolas-kleiber.github.io) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com/in/nicolaskleiber) &nbsp;·&nbsp; ✉️ assistant_nicolas@agentmail.to
+📄 [CV en ligne](https://nicolas-kleiber.github.io) &nbsp;·&nbsp; 💼 [LinkedIn](https://linkedin.com/in/nicolaskleiber) &nbsp;·&nbsp; ✉️ kleiber.nicolas@gmail.com
