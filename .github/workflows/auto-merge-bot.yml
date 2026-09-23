@@ -20,26 +20,27 @@ jobs:
       - name: Évaluer et traiter la PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           echo "Analyse de la PR #${PR_NUMBER} : ${PR_TITLE}"
 
           # 1. Vérifier le nombre de fichiers impactés
-          CHANGED_FILES_COUNT=$(gh pr view "$PR_NUMBER" --json files --jq '.files | length')
+          CHANGED_FILES_COUNT=$(gh pr view "$PR_NUMBER" --repo "$GH_REPO" --json files --jq '.files | length')
 
           # Cas 1 : PR sans changement réel -> Fermeture
           if [ "$CHANGED_FILES_COUNT" -eq 0 ] || echo "$PR_TITLE" | grep -qi "no changes needed"; then
             echo "PR sans changement détectée -> Fermeture."
-            gh pr close "$PR_NUMBER" --comment "🤖 Fermeture automatique : aucun changement nécessaire."
+            gh pr close "$PR_NUMBER" --repo "$GH_REPO" --comment "🤖 Fermeture automatique : aucun changement nécessaire."
             exit 0
           fi
 
           # Cas 2 : PR doc, style, formatage ou anonymisation
           if echo "$PR_TITLE" | grep -qiE '^(docs:|style:|chore\(docs\):|refactor\(docs\):)'; then
             echo "PR documentaire/style -> Auto-merge squash."
-            gh pr review "$PR_NUMBER" --approve --body "🤖 Auto-approuvé par GitHub Actions (PR documentaire/style Jules)." || true
-            gh pr merge "$PR_NUMBER" --squash --delete-branch --admin
+            gh pr review "$PR_NUMBER" --repo "$GH_REPO" --approve --body "🤖 Auto-approuvé par GitHub Actions (PR documentaire/style Jules)." || true
+            gh pr merge "$PR_NUMBER" --repo "$GH_REPO" --squash --delete-branch --admin
             exit 0
           fi
 
