@@ -12,6 +12,8 @@ jobs:
   handle-bot-pr:
     name: Traitement PR Jules & Bots
     if: >
+      (github.event.pull_request.head.repo.full_name == github.repository &&
+       startsWith(github.event.pull_request.head.ref, 'routine/')) ||
       contains(github.event.pull_request.user.login, 'jules') ||
       github.event.pull_request.user.login == 'app/google-labs-jules' ||
       github.event.pull_request.user.login == 'google-labs-jules[bot]'
