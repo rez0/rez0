@@ -42,6 +42,7 @@ jobs:
           if echo "$PR_TITLE" | grep -qiE '^(docs:|style:|chore\(docs\):|refactor\(docs\):)'; then
             echo "PR documentaire/style -> Auto-merge squash."
             gh pr review "$PR_NUMBER" --repo "$GH_REPO" --approve --body "🤖 Auto-approuvé par GitHub Actions (PR documentaire/style Jules)." || true
+            gh pr ready "$PR_NUMBER" --repo "$GH_REPO" || true  # PR de routine ouverte en brouillon
             gh pr merge "$PR_NUMBER" --repo "$GH_REPO" --squash --delete-branch --admin
             exit 0
           fi
